@@ -1,0 +1,12 @@
+# This override file should be used when running this service in isolation
+# to provide required sibling services for local testing
+
+services:
+  test-dotnet-topic-ai:
+    build:
+      target: development
+    ports:
+      - "3007:3007"
+    volumes:
+      - ./src/Test.Dotnet.Topic.Ai.Api:/home/dotnet/src/Test.Dotnet.Topic.Ai.Api
+      - ./src/Test.Dotnet.Topic.Ai.Core:/home/dotnet/src/Test.Dotnet.Topic.Ai.Core

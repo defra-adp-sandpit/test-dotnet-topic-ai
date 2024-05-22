@@ -1,0 +1,11 @@
+{{- include "adp-helm-library.deployment" (list . "test-dotnet-topic-ai.deployment") -}}
+{{- define "test-dotnet-topic-ai.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+      - {{ include "adp-helm-library.container" (list . "test-dotnet-topic-ai.container") }}
+      volumes:
+      - name: {{ .Values.volumeMounts.name }}
+        emptyDir: {}
+{{- end -}}

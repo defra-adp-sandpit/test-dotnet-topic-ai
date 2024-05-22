@@ -1,0 +1,16 @@
+services:
+  test-dotnet-topic-ai:
+    build:
+      target: development
+    image: test-dotnet-topic-ai-development
+    container_name: test-dotnet-topic-ai-test
+    user: root
+    entrypoint: sh -c "cd /home/dotnet && chown -R dotnet:dotnet . && su dotnet -c 'dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./test-output/'"
+    volumes:
+      - ./Test.Dotnet.Topic.Ai.sln:/home/dotnet/Test.Dotnet.Topic.Ai.sln
+      - ./src/Test.Dotnet.Topic.Ai.Core:/home/dotnet/src/Test.Dotnet.Topic.Ai.Core
+      - ./test/Test.Dotnet.Topic.Ai.Core.Tests:/home/dotnet/test/Test.Dotnet.Topic.Ai.Core.Tests
+      - ./src/Test.Dotnet.Topic.Ai.Api:/home/dotnet/src/Test.Dotnet.Topic.Ai.Api
+      - ./test/Test.Dotnet.Topic.Ai.Api.Tests:/home/dotnet/test/Test.Dotnet.Topic.Ai.Api.Tests
+      - ./test/Test.Dotnet.Topic.Ai.Api.Tests/test-output:/home/dotnet/test/Test.Dotnet.Topic.Ai.Api.Tests/test-output
+      - ./test/Test.Dotnet.Topic.Ai.Core.Tests/test-output:/home/dotnet/test/Test.Dotnet.Topic.Ai.Core.Tests/test-output

@@ -1,0 +1,10 @@
+services:
+  test-dotnet-topic-ai:
+    build:
+      context: .
+      target: production
+    image: test-dotnet-topic-ai
+    container_name: test-dotnet-topic-ai
+    environment:
+      APPINSIGHTS_CONNECTIONSTRING: ${APPINSIGHTS_CONNECTIONSTRING}
+      APPINSIGHTS_CLOUDROLE: test-dotnet-topic-ai-local
